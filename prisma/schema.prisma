@@ -1,0 +1,106 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model ConfiguracionPlanta {
+  id                         Int     @id @default(1)
+  razon_social               String  @default("Planta Demo S.A.C.")
+  ruc                        String  @default("20123456789")
+  direccion                  String?
+  distrito                   String?
+  provincia                  String?
+  departamento               String?
+  licencia_resolucion        String?
+  representante_legal        String?
+  dni_representante          String?
+  peso_estandar_saco_kg      Float   @default(50.00)
+  email_1                    String?
+  email_2                    String?
+  registro_personas_juridicas String?  @default("SUNARP")
+}
+
+model MaestroProveedor {
+  id                         Int                @id @default(autoincrement())
+  razon_social               String
+  ruc                        String             @unique
+  domicilio                  String?
+  distrito                   String?
+  provincia                  String?
+  departamento               String?
+  licencia                   String?
+  representante              String?
+  dni_representante          String?
+  fecha_vencimiento          DateTime?
+  activo                     Boolean            @default(true)
+  email_1                    String?
+  email_2                    String?
+  registro_personas_juridicas String?
+  recepciones                RecepcionResiduo[]
+}
+
+model MaestroCliente {
+  id           Int             @id @default(autoincrement())
+  razon_social String
+  ruc          String
+  ventas       SalidaProducto[]
+}
+
+model RecepcionResiduo {
+  id             Int               @id @default(autoincrement())
+  fecha_hora     DateTime          @default(now())
+  proveedor      MaestroProveedor  @relation(fields: [proveedor_id], references: [id])
+  proveedor_id   Int
+  especie        String
+  tipo_producto  String
+  peso_neto_tm   Float
+  placa_vehiculo String
+  guia_remision  String
+  anexo_4        String
+  produccion_turno ProduccionTurno? @relation(fields: [turno_id], references: [id])
+  turno_id      Int?
+  cerrado       Boolean           @default(false)
+
+  @@unique([proveedor_id, guia_remision])
+}
+
+model ProduccionTurno {
+  id                Int                @id @default(autoincrement())
+  fecha             DateTime           @default(now())
+  turno             String
+  estado            String             @default("CERRADO")
+  mp_saldo_inicial  Float
+  mp_ingresos       Float
+  mp_procesada      Float
+  mp_saldo_final    Float
+  harina_sacos      Int
+  harina_tm         Float
+  aceite_tm         Float?             @default(0)
+  factor_conversion Float
+  recepciones       RecepcionResiduo[]
+}
+
+model SalidaProducto {
+  id             Int           @id @default(autoincrement())
+  fecha          DateTime      @default(now())
+  cliente        MaestroCliente @relation(fields: [cliente_id], references: [id])
+  cliente_id     Int
+  tipo_producto  String        @default("HARINA")
+  peso_tm        Float
+  numero_sacos   Int
+  guia_remision  String
+}
+
+model StockProductoTerminado {
+  id              Int      @id @default(1)
+  saldo_harina_tm Float    @default(0)
+  saldo_aceite_tm Float    @default(0)
+  updated_at      DateTime @updatedAt
+}
