@@ -1,0 +1,82 @@
+{
+  "encabezado": {
+    "dni_ce": {
+      "x": 396,
+      "y": 472
+    },
+    "representante_legal": {
+      "x": 33,
+      "y": 472
+    },
+    "razon_social": {
+      "x": 585,
+      "y": 472
+    },
+    "rd_licencia": {
+      "x": 192,
+      "y": 464
+    },
+    "actividad": {
+      "x": 502,
+      "y": 465
+    },
+    "direccion": {
+      "x": 48,
+      "y": 457
+    },
+    "distrito": {
+      "x": 258,
+      "y": 457
+    },
+    "provincia": {
+      "x": 375,
+      "y": 457
+    },
+    "departamento": {
+      "x": 501,
+      "y": 457
+    }
+  },
+  "tabla": {
+    "rowBaseY": 403,
+    "rowHeight": 10,
+    "procedenciaLineGap": 2,
+    "cols": {
+      "fecha_recepcion": 19,
+      "procedencia": 49,
+      "placa": 103,
+      "guia_remision": 136,
+      "especie": 170,
+      "residuos_t": 207,
+      "rep_pesaje_residuos": 230,
+      "descartes_anchoveta": 254,
+      "rep_pesaje_descartes": 287,
+      "cert_procedencia": 648,
+      "saldo_mp_anterior": 318,
+      "total_mp": 352,
+      "mp_procesada": 390,
+      "saldo_poza": 410,
+      "harina_producida": 443,
+      "n_sacos": 467,
+      "pct_rend_harina": 490,
+      "factor_harina": 522,
+      "aceite_producido": 554,
+      "pct_rend_aceite": 587,
+      "factor_aceite": 618,
+      "peso_transportada": 686,
+      "stock_harina": 723,
+      "stock_aceite": 763
+    }
+  },
+  "pie": {
+    "representante_legal": {
+      "x": 345,
+      "y": 81
+    },
+    "dni_ce": {
+      "x": 382,
+      "y": 53
+    }
+  },
+  "fontSize": 6
+}
