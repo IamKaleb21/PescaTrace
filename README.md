@@ -107,4 +107,4 @@ pnpm start
 
 ## Licencia
 
-Proyecto privado.
+Código abierto bajo [MIT](LICENSE).
